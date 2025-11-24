@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grind_lab/core/dependency_injection/dependency_injection.dart';
 import 'package:grind_lab/core/presentation/app_bottom_navigation_bar.dart';
 import 'package:grind_lab/core/presentation/app_scaffold.dart';
+import 'package:grind_lab/features/home/presentation/home_screen.dart';
 import 'package:grind_lab/features/main/cubit/main_cubit.dart';
 
 class MainScreen extends StatelessWidget {
@@ -70,7 +71,7 @@ class _BodyState extends State<_Body> {
             itemBuilder: (context, index) {
               switch (index) {
                 case 0:
-                  return Text('Home Screen');
+                  return HomeScreen();
                 case 1:
                   return Text('Training Plan Screen');
                 case 2:

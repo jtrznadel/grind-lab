@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grind_lab/core/constants/app_colors.dart';
+import 'package:grind_lab/core/constants/app_shadows.dart';
 import 'package:grind_lab/core/constants/app_values.dart';
 import 'package:grind_lab/core/extensions/context_extensions.dart';
 import 'package:grind_lab/features/main/cubit/main_cubit.dart';
@@ -26,13 +27,7 @@ class AppBottomNavigationBar extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(100),
                   ),
-                  shadows: [
-                    BoxShadow(
-                      color: AppColors.black.withValues(alpha: .2),
-                      blurRadius: 8,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
+                  shadows: AppShadows.navShadow,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
