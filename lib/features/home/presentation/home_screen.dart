@@ -29,27 +29,24 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: AppValues.appBarHeight - 10),
-      child: Column(
-        children: [
-          _Header(),
-          SizedBox(height: 16),
-          HomeDayTimeline(),
-          SizedBox(height: 24),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  HomeWeeklyProgress(),
-                  SizedBox(height: 24),
-                  AppTile(child: Image.asset(MediaRes.bodyDefault)),
-                ],
-              ),
+    return Column(
+      children: [
+        _Header(),
+        SizedBox(height: 16),
+        HomeDayTimeline(),
+        SizedBox(height: 24),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                HomeWeeklyProgress(),
+                SizedBox(height: 24),
+                AppTile(child: Image.asset(MediaRes.bodyDefault)),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
