@@ -55,12 +55,12 @@ extension SplashStatePatterns on SplashState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Empty value)?  empty,TResult Function( _Main value)?  main,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Empty value)?  empty,TResult Function( _Ready value)?  ready,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Empty() when empty != null:
-return empty(_that);case _Main() when main != null:
-return main(_that);case _:
+return empty(_that);case _Ready() when ready != null:
+return ready(_that);case _:
   return orElse();
 
 }
@@ -78,12 +78,12 @@ return main(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Empty value)  empty,required TResult Function( _Main value)  main,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Empty value)  empty,required TResult Function( _Ready value)  ready,}){
 final _that = this;
 switch (_that) {
 case _Empty():
-return empty(_that);case _Main():
-return main(_that);case _:
+return empty(_that);case _Ready():
+return ready(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -100,12 +100,12 @@ return main(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Empty value)?  empty,TResult? Function( _Main value)?  main,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Empty value)?  empty,TResult? Function( _Ready value)?  ready,}){
 final _that = this;
 switch (_that) {
 case _Empty() when empty != null:
-return empty(_that);case _Main() when main != null:
-return main(_that);case _:
+return empty(_that);case _Ready() when ready != null:
+return ready(_that);case _:
   return null;
 
 }
@@ -122,11 +122,11 @@ return main(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  main,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  ready,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Empty() when empty != null:
-return empty();case _Main() when main != null:
-return main();case _:
+return empty();case _Ready() when ready != null:
+return ready();case _:
   return orElse();
 
 }
@@ -144,11 +144,11 @@ return main();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  main,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  ready,}) {final _that = this;
 switch (_that) {
 case _Empty():
-return empty();case _Main():
-return main();case _:
+return empty();case _Ready():
+return ready();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +165,11 @@ return main();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  main,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  ready,}) {final _that = this;
 switch (_that) {
 case _Empty() when empty != null:
-return empty();case _Main() when main != null:
-return main();case _:
+return empty();case _Ready() when ready != null:
+return ready();case _:
   return null;
 
 }
@@ -212,8 +212,8 @@ String toString() {
 /// @nodoc
 
 
-class _Main implements SplashState {
-  const _Main();
+class _Ready implements SplashState {
+  const _Ready();
   
 
 
@@ -223,7 +223,7 @@ class _Main implements SplashState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Main);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Ready);
 }
 
 
@@ -232,7 +232,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SplashState.main()';
+  return 'SplashState.ready()';
 }
 
 

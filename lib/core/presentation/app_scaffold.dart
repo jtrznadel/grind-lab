@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:grind_lab/core/constants/app_colors.dart';
 
 class AppScaffold extends StatelessWidget {
@@ -16,9 +17,16 @@ class AppScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor ?? AppColors.backgroundColor,
-      body: SafeArea(top: isSafeAreaTop, bottom: isSafeAreaBottom, child: body),
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle.light,
+      child: Scaffold(
+        backgroundColor: backgroundColor ?? AppColors.backgroundColor,
+        body: SafeArea(
+          top: isSafeAreaTop,
+          bottom: isSafeAreaBottom,
+          child: body,
+        ),
+      ),
     );
   }
 }
