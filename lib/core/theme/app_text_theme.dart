@@ -68,7 +68,7 @@ TextTheme textTheme = TextTheme(
     color: AppColors.textPrimary,
   ),
   labelSmall: GoogleFonts.inter(
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
   ),

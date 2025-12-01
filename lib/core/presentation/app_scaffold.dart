@@ -9,16 +9,18 @@ class AppScaffold extends StatelessWidget {
     this.backgroundColor,
     this.isSafeAreaTop = true,
     this.isSafeAreaBottom = true,
+    this.overlayStyle = SystemUiOverlayStyle.dark,
   });
   final Widget body;
   final bool isSafeAreaTop;
   final Color? backgroundColor;
   final bool isSafeAreaBottom;
+  final SystemUiOverlayStyle overlayStyle;
 
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
-      value: SystemUiOverlayStyle.light,
+      value: overlayStyle,
       child: Scaffold(
         backgroundColor: backgroundColor ?? AppColors.backgroundColor,
         body: SafeArea(

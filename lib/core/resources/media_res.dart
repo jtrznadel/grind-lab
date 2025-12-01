@@ -6,6 +6,7 @@ abstract class MediaRes {
   //IMAGES
   static const String bodyDefault = '$images/body_default.png';
   static const String tempWelcome = '$images/temp_welcome.png';
+  static const String authBackground = '$images/auth_background.png';
 
   //ICONS
 

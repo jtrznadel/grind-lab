@@ -12,6 +12,9 @@ class AppElevatedButton extends StatelessWidget {
     this.isDisabled = false,
     this.height,
     this.backgroundColor,
+    this.borderColor,
+    this.overlayColor,
+    this.shadowEnabled = true,
   });
   final VoidCallback onPressed;
   final Widget child;
@@ -20,28 +23,42 @@ class AppElevatedButton extends StatelessWidget {
   final bool isDisabled;
   final double? height;
   final Color? backgroundColor;
+  final Color? borderColor;
+  final Color? overlayColor;
+  final bool shadowEnabled;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width,
+      width: width ?? double.infinity,
       height: height,
       child: ElevatedButton(
         onPressed: isDisabled ? null : onPressed,
 
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppColors.accentColor,
-          shadowColor: AppColors.black,
+          backgroundColor: backgroundColor ?? AppColors.primary,
+          overlayColor: overlayColor ?? AppColors.primary,
+          shadowColor: shadowEnabled == true
+              ? AppColors.black
+              : Colors.transparent,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(25),
           ),
           padding:
               padding ??
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           disabledBackgroundColor:
               backgroundColor?.withValues(alpha: 0.4) ?? AppColors.lightGray,
+          side: BorderSide(color: borderColor ?? Colors.transparent),
         ),
         child: DefaultTextStyle(
-          style: context.textTheme.labelMedium!,
+          style:
+              context.textTheme.labelMedium?.copyWith(
+                color: isDisabled
+                    ? AppColors.white.withValues(alpha: 0.7)
+                    : AppColors.white,
+                fontWeight: FontWeight.w600,
+              ) ??
+              const TextStyle(),
           child: child,
         ),
       ),
