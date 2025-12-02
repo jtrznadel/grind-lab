@@ -228,12 +228,12 @@ _$ReadyCopyWith<_Ready> get copyWith => __$ReadyCopyWithImpl<_Ready>(this, _$ide
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Ready&&const DeepCollectionEquality().equals(other.controller, controller));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Ready&&(identical(other.controller, controller) || other.controller == controller));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(controller));
+int get hashCode => Object.hash(runtimeType,controller);
 
 @override
 String toString() {
@@ -265,9 +265,9 @@ class __$ReadyCopyWithImpl<$Res>
 
 /// Create a copy of WelcomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? controller = freezed,}) {
+@pragma('vm:prefer-inline') $Res call({Object? controller = null,}) {
   return _then(_Ready(
-freezed == controller ? _self.controller : controller // ignore: cast_nullable_to_non_nullable
+null == controller ? _self.controller : controller // ignore: cast_nullable_to_non_nullable
 as VideoPlayerController,
   ));
 }
