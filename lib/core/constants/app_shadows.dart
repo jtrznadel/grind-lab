@@ -19,4 +19,12 @@ class AppShadows {
       offset: Offset(0, 2),
     ),
   ];
+
+  static final buttonShadow = [
+    BoxShadow(
+      color: AppColors.black.withValues(alpha: .15),
+      blurRadius: 2,
+      offset: Offset(0, 2),
+    ),
+  ];
 }

@@ -55,12 +55,13 @@ extension SplashStatePatterns on SplashState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Empty value)?  empty,TResult Function( _Main value)?  main,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Loading value)?  loading,TResult Function( _ToWelcome value)?  toWelcome,TResult Function( _ToHome value)?  toHome,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _Empty() when empty != null:
-return empty(_that);case _Main() when main != null:
-return main(_that);case _:
+case _Loading() when loading != null:
+return loading(_that);case _ToWelcome() when toWelcome != null:
+return toWelcome(_that);case _ToHome() when toHome != null:
+return toHome(_that);case _:
   return orElse();
 
 }
@@ -78,12 +79,13 @@ return main(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Empty value)  empty,required TResult Function( _Main value)  main,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Loading value)  loading,required TResult Function( _ToWelcome value)  toWelcome,required TResult Function( _ToHome value)  toHome,}){
 final _that = this;
 switch (_that) {
-case _Empty():
-return empty(_that);case _Main():
-return main(_that);case _:
+case _Loading():
+return loading(_that);case _ToWelcome():
+return toWelcome(_that);case _ToHome():
+return toHome(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -100,12 +102,13 @@ return main(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Empty value)?  empty,TResult? Function( _Main value)?  main,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Loading value)?  loading,TResult? Function( _ToWelcome value)?  toWelcome,TResult? Function( _ToHome value)?  toHome,}){
 final _that = this;
 switch (_that) {
-case _Empty() when empty != null:
-return empty(_that);case _Main() when main != null:
-return main(_that);case _:
+case _Loading() when loading != null:
+return loading(_that);case _ToWelcome() when toWelcome != null:
+return toWelcome(_that);case _ToHome() when toHome != null:
+return toHome(_that);case _:
   return null;
 
 }
@@ -122,11 +125,12 @@ return main(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function()?  main,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function()?  toWelcome,TResult Function()?  toHome,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _Empty() when empty != null:
-return empty();case _Main() when main != null:
-return main();case _:
+case _Loading() when loading != null:
+return loading();case _ToWelcome() when toWelcome != null:
+return toWelcome();case _ToHome() when toHome != null:
+return toHome();case _:
   return orElse();
 
 }
@@ -144,11 +148,12 @@ return main();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function()  main,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function()  toWelcome,required TResult Function()  toHome,}) {final _that = this;
 switch (_that) {
-case _Empty():
-return empty();case _Main():
-return main();case _:
+case _Loading():
+return loading();case _ToWelcome():
+return toWelcome();case _ToHome():
+return toHome();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +170,12 @@ return main();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function()?  main,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function()?  toWelcome,TResult? Function()?  toHome,}) {final _that = this;
 switch (_that) {
-case _Empty() when empty != null:
-return empty();case _Main() when main != null:
-return main();case _:
+case _Loading() when loading != null:
+return loading();case _ToWelcome() when toWelcome != null:
+return toWelcome();case _ToHome() when toHome != null:
+return toHome();case _:
   return null;
 
 }
@@ -180,8 +186,8 @@ return main();case _:
 /// @nodoc
 
 
-class _Empty implements SplashState {
-  const _Empty();
+class _Loading implements SplashState {
+  const _Loading();
   
 
 
@@ -191,7 +197,7 @@ class _Empty implements SplashState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Empty);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Loading);
 }
 
 
@@ -200,7 +206,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SplashState.empty()';
+  return 'SplashState.loading()';
 }
 
 
@@ -212,8 +218,8 @@ String toString() {
 /// @nodoc
 
 
-class _Main implements SplashState {
-  const _Main();
+class _ToWelcome implements SplashState {
+  const _ToWelcome();
   
 
 
@@ -223,7 +229,7 @@ class _Main implements SplashState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Main);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToWelcome);
 }
 
 
@@ -232,7 +238,39 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'SplashState.main()';
+  return 'SplashState.toWelcome()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class _ToHome implements SplashState {
+  const _ToHome();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ToHome);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SplashState.toHome()';
 }
 
 

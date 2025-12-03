@@ -1,7 +1,8 @@
 part of 'splash_cubit.dart';
 
 @freezed
-class SplashState with _$SplashState {
-  const factory SplashState.empty() = _Empty;
-  const factory SplashState.main() = _Main;
+abstract class SplashState with _$SplashState {
+  const factory SplashState.loading() = _Loading;
+  const factory SplashState.toWelcome() = _ToWelcome;
+  const factory SplashState.toHome() = _ToHome;
 }
