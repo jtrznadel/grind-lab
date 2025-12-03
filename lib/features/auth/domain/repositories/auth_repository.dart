@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:grind_lab/core/utils/failures/failure.dart';
-import 'package:grind_lab/features/auth/domain/entities/auth_entity.dart';
+import 'package:grind_lab/features/auth/domain/entities/user_entity.dart';
 
 abstract class AuthRepository {
   Future<Either<Failure, Unit>> signIn({
@@ -15,6 +15,5 @@ abstract class AuthRepository {
 
   Future<Either<Failure, Unit>> signOut();
 
-  Stream<AuthEntity> get authStateStream;
-  bool get isAuthenticated;
+  Stream<UserEntity?> get userStream;
 }

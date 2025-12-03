@@ -6,10 +6,9 @@ abstract class AuthRemoteDataSource {
   Future<void> signUp({required String email, required String password});
   Future<void> signOut();
   Stream<AuthState> get authStateStream;
-  User? get currentUser;
 }
 
-@Injectable(as: AuthRemoteDataSource)
+@LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl(this._supabase);
 
@@ -45,7 +44,4 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Stream<AuthState> get authStateStream => _supabase.auth.onAuthStateChange;
-
-  @override
-  User? get currentUser => _supabase.auth.currentUser;
 }

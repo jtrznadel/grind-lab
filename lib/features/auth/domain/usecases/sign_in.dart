@@ -5,18 +5,18 @@ import 'package:grind_lab/features/auth/domain/repositories/auth_repository.dart
 import 'package:injectable/injectable.dart';
 
 @injectable
-class SignUp implements UsecaseWithParams<Unit, SignUpParams> {
-  const SignUp(this._repository);
+class SignIn implements UsecaseWithParams<Unit, SignInParams> {
+  const SignIn(this._repository);
   final AuthRepository _repository;
 
   @override
-  Future<Either<Failure, Unit>> call(SignUpParams params) async =>
-      await _repository.signUp(email: params.email, password: params.password);
+  Future<Either<Failure, Unit>> call(SignInParams params) async =>
+      await _repository.signIn(email: params.email, password: params.password);
 }
 
-class SignUpParams {
+class SignInParams {
   final String email;
   final String password;
 
-  SignUpParams({required this.email, required this.password});
+  SignInParams({required this.email, required this.password});
 }

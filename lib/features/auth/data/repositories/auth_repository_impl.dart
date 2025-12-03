@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:grind_lab/core/utils/failures/failure.dart';
 import 'package:grind_lab/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:grind_lab/features/auth/domain/entities/auth_entity.dart';
+import 'package:grind_lab/features/auth/domain/entities/user_entity.dart';
 import 'package:grind_lab/features/auth/domain/repositories/auth_repository.dart';
 import 'package:injectable/injectable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -52,14 +52,15 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Stream<AuthEntity> get authStateStream {
+  Stream<UserEntity?> get userStream {
     return _remoteDataSource.authStateStream.map((authState) {
-      return authState.event == AuthChangeEvent.signedIn
-          ? AuthEntity.authenticated()
-          : AuthEntity.unauthenticated();
+      final user = authState.session?.user;
+      if (user == null) return null;
+      return UserEntity(
+        id: user.id,
+        email: user.email ?? '',
+        name: user.userMetadata?['name'] as String? ?? '',
+      );
     });
   }
-
-  @override
-  bool get isAuthenticated => _remoteDataSource.currentUser != null;
 }

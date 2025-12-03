@@ -10,6 +10,8 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:get_it/get_it.dart' as _i174;
+import 'package:grind_lab/core/dependency_injection/modules/supabase_module.dart'
+    as _i696;
 import 'package:grind_lab/core/router/app_router.dart' as _i100;
 import 'package:grind_lab/core/services/video_preloader_service.dart' as _i207;
 import 'package:grind_lab/features/auth/data/data_sources/auth_remote_data_source.dart'
@@ -18,8 +20,15 @@ import 'package:grind_lab/features/auth/data/repositories/auth_repository_impl.d
     as _i83;
 import 'package:grind_lab/features/auth/domain/repositories/auth_repository.dart'
     as _i301;
-import 'package:grind_lab/features/auth/presentation/cubit/auth_cubit.dart'
-    as _i501;
+import 'package:grind_lab/features/auth/domain/usecases/observe_auth_state.dart'
+    as _i1010;
+import 'package:grind_lab/features/auth/domain/usecases/sign_in.dart' as _i582;
+import 'package:grind_lab/features/auth/domain/usecases/sign_out.dart' as _i952;
+import 'package:grind_lab/features/auth/domain/usecases/sign_up.dart' as _i23;
+import 'package:grind_lab/features/auth/presentation/auth_session_cubit/auth_session_cubit.dart'
+    as _i881;
+import 'package:grind_lab/features/auth/presentation/sign_in_cubit/sign_in_cubit.dart'
+    as _i177;
 import 'package:grind_lab/features/main/cubit/main_cubit.dart' as _i693;
 import 'package:grind_lab/features/splash/presentation/cubit/splash_cubit.dart'
     as _i773;
@@ -35,16 +44,15 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    final supabaseModule = _$SupabaseModule();
     gh.factory<_i693.MainCubit>(() => _i693.MainCubit());
+    gh.lazySingleton<_i454.SupabaseClient>(() => supabaseModule.supabaseClient);
     gh.lazySingleton<_i100.AppRouter>(() => _i100.AppRouter());
     gh.lazySingleton<_i207.VideoPreloaderService>(
       () => _i207.VideoPreloaderService(),
     );
-    gh.factory<_i567.AuthRemoteDataSource>(
+    gh.lazySingleton<_i567.AuthRemoteDataSource>(
       () => _i567.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
-    );
-    gh.factory<_i773.SplashCubit>(
-      () => _i773.SplashCubit(gh<_i207.VideoPreloaderService>()),
     );
     gh.factory<_i878.WelcomeCubit>(
       () => _i878.WelcomeCubit(gh<_i207.VideoPreloaderService>()),
@@ -52,9 +60,27 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i301.AuthRepository>(
       () => _i83.AuthRepositoryImpl(gh<_i567.AuthRemoteDataSource>()),
     );
-    gh.factory<_i501.AuthCubit>(
-      () => _i501.AuthCubit(gh<_i301.AuthRepository>()),
+    gh.factory<_i1010.ObserveAuthState>(
+      () => _i1010.ObserveAuthState(gh<_i301.AuthRepository>()),
     );
+    gh.factory<_i582.SignIn>(() => _i582.SignIn(gh<_i301.AuthRepository>()));
+    gh.factory<_i952.SignOut>(() => _i952.SignOut(gh<_i301.AuthRepository>()));
+    gh.factory<_i23.SignUp>(() => _i23.SignUp(gh<_i301.AuthRepository>()));
+    gh.lazySingleton<_i881.AuthSessionCubit>(
+      () => _i881.AuthSessionCubit(
+        gh<_i1010.ObserveAuthState>(),
+        gh<_i952.SignOut>(),
+      ),
+    );
+    gh.factory<_i773.SplashCubit>(
+      () => _i773.SplashCubit(
+        gh<_i1010.ObserveAuthState>(),
+        gh<_i207.VideoPreloaderService>(),
+      ),
+    );
+    gh.factory<_i177.SignInCubit>(() => _i177.SignInCubit(gh<_i582.SignIn>()));
     return this;
   }
 }
+
+class _$SupabaseModule extends _i696.SupabaseModule {}
