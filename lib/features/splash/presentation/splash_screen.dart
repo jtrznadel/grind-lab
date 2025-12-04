@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:grind_lab/core/constants/app_colors.dart';
 import 'package:grind_lab/core/dependency_injection/dependency_injection.dart';
 import 'package:grind_lab/core/presentation/app_scaffold.dart';
-import 'package:grind_lab/features/auth/presentation/auth_session_cubit/auth_session_cubit.dart';
+import 'package:grind_lab/features/auth/presentation/cubit/auth_session_cubit.dart';
 import 'package:grind_lab/features/main/presentation/main_screen.dart';
 import 'package:grind_lab/features/splash/presentation/cubit/splash_cubit.dart';
 import 'package:grind_lab/features/welcome/presentation/view/welcome_screen.dart';

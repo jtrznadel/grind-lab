@@ -15,8 +15,12 @@ class WelcomeCubit extends Cubit<WelcomeState> {
 
   final VideoPreloaderService _videoPreloaderService;
 
-  void _init() {
-    final controller = _videoPreloaderService.controller;
+  void _init() async {
+    var controller = _videoPreloaderService.controller;
+    if (controller == null || !controller.value.isInitialized) {
+      await _videoPreloaderService.initializeWelcomeVideo();
+      controller = _videoPreloaderService.controller;
+    }
     if (controller != null && controller.value.isInitialized) {
       controller.play();
       emit(WelcomeState.ready(controller));
@@ -25,7 +29,7 @@ class WelcomeCubit extends Cubit<WelcomeState> {
 
   @override
   Future<void> close() {
-    _videoPreloaderService.dispose();
+    _videoPreloaderService.pause();
     return super.close();
   }
 }

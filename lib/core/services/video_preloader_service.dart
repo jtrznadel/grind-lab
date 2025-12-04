@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:grind_lab/core/resources/media_res.dart';
 import 'package:injectable/injectable.dart';
 import 'package:video_player/video_player.dart';
@@ -17,6 +18,14 @@ class VideoPreloaderService {
   }
 
   VideoPlayerController? get controller => _controller;
+
+  void pause() {
+    _controller?.pause();
+  }
+
+  void play() {
+    _controller?.play();
+  }
 
   void dispose() {
     _controller?.dispose();
