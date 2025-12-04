@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:grind_lab/core/constants/app_colors.dart';
 import 'package:grind_lab/core/extensions/context_extensions.dart';
 import 'package:grind_lab/core/presentation/app_elevated_button.dart';
-import 'package:grind_lab/features/auth/presentation/view/sign_in_screen.dart';
-import 'package:grind_lab/features/auth/presentation/view/sign_up_screen.dart';
+import 'package:grind_lab/features/sign_in/presentation/view/sign_in_screen.dart';
+import 'package:grind_lab/features/sign_up/presentation/view/sign_up_screen.dart';
 
 class WelcomeActions extends StatelessWidget {
   const WelcomeActions({super.key});

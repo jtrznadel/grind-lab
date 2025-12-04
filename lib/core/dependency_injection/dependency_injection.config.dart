@@ -25,11 +25,15 @@ import 'package:grind_lab/features/auth/domain/usecases/observe_auth_state.dart'
 import 'package:grind_lab/features/auth/domain/usecases/sign_in.dart' as _i582;
 import 'package:grind_lab/features/auth/domain/usecases/sign_out.dart' as _i952;
 import 'package:grind_lab/features/auth/domain/usecases/sign_up.dart' as _i23;
-import 'package:grind_lab/features/auth/presentation/auth_session_cubit/auth_session_cubit.dart'
-    as _i881;
-import 'package:grind_lab/features/auth/presentation/sign_in_cubit/sign_in_cubit.dart'
-    as _i177;
+import 'package:grind_lab/features/auth/presentation/cubit/auth_session_cubit.dart'
+    as _i509;
 import 'package:grind_lab/features/main/cubit/main_cubit.dart' as _i693;
+import 'package:grind_lab/features/profile/presentation/cubit/profile_cubit.dart'
+    as _i566;
+import 'package:grind_lab/features/sign_in/presentation/cubit/sign_in_cubit.dart'
+    as _i144;
+import 'package:grind_lab/features/sign_up/presentation/cubit/sign_up_cubit.dart'
+    as _i386;
 import 'package:grind_lab/features/splash/presentation/cubit/splash_cubit.dart'
     as _i773;
 import 'package:grind_lab/features/welcome/presentation/cubit/welcome_cubit.dart'
@@ -54,6 +58,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i567.AuthRemoteDataSource>(
       () => _i567.AuthRemoteDataSourceImpl(gh<_i454.SupabaseClient>()),
     );
+    gh.factory<_i773.SplashCubit>(
+      () => _i773.SplashCubit(gh<_i207.VideoPreloaderService>()),
+    );
     gh.factory<_i878.WelcomeCubit>(
       () => _i878.WelcomeCubit(gh<_i207.VideoPreloaderService>()),
     );
@@ -66,19 +73,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i582.SignIn>(() => _i582.SignIn(gh<_i301.AuthRepository>()));
     gh.factory<_i952.SignOut>(() => _i952.SignOut(gh<_i301.AuthRepository>()));
     gh.factory<_i23.SignUp>(() => _i23.SignUp(gh<_i301.AuthRepository>()));
-    gh.lazySingleton<_i881.AuthSessionCubit>(
-      () => _i881.AuthSessionCubit(
-        gh<_i1010.ObserveAuthState>(),
-        gh<_i952.SignOut>(),
-      ),
-    );
-    gh.factory<_i773.SplashCubit>(
-      () => _i773.SplashCubit(
-        gh<_i1010.ObserveAuthState>(),
+    gh.factory<_i386.SignUpCubit>(
+      () => _i386.SignUpCubit(
+        gh<_i23.SignUp>(),
         gh<_i207.VideoPreloaderService>(),
       ),
     );
-    gh.factory<_i177.SignInCubit>(() => _i177.SignInCubit(gh<_i582.SignIn>()));
+    gh.factory<_i144.SignInCubit>(
+      () => _i144.SignInCubit(
+        gh<_i582.SignIn>(),
+        gh<_i207.VideoPreloaderService>(),
+      ),
+    );
+    gh.lazySingleton<_i509.AuthSessionCubit>(
+      () => _i509.AuthSessionCubit(gh<_i1010.ObserveAuthState>()),
+    );
+    gh.factory<_i566.ProfileCubit>(
+      () => _i566.ProfileCubit(gh<_i952.SignOut>()),
+    );
     return this;
   }
 }

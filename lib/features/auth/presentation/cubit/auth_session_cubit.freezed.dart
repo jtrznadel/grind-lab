@@ -12,11 +12,17 @@ part of 'auth_session_cubit.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$AuthSessionState {
+mixin _$AuthSessionState implements DiagnosticableTreeMixin {
 
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthSessionState'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -28,7 +34,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthSessionState()';
 }
 
@@ -186,7 +192,7 @@ return unauthenticated();case _:
 /// @nodoc
 
 
-class _Initial implements AuthSessionState {
+class _Initial with DiagnosticableTreeMixin implements AuthSessionState {
   const _Initial();
   
 
@@ -194,6 +200,12 @@ class _Initial implements AuthSessionState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthSessionState.initial'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -205,7 +217,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthSessionState.initial()';
 }
 
@@ -218,7 +230,7 @@ String toString() {
 /// @nodoc
 
 
-class _Authenticated implements AuthSessionState {
+class _Authenticated with DiagnosticableTreeMixin implements AuthSessionState {
   const _Authenticated();
   
 
@@ -226,6 +238,12 @@ class _Authenticated implements AuthSessionState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthSessionState.authenticated'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -237,7 +255,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthSessionState.authenticated()';
 }
 
@@ -250,7 +268,7 @@ String toString() {
 /// @nodoc
 
 
-class _Unauthenticated implements AuthSessionState {
+class _Unauthenticated with DiagnosticableTreeMixin implements AuthSessionState {
   const _Unauthenticated();
   
 
@@ -258,6 +276,12 @@ class _Unauthenticated implements AuthSessionState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthSessionState.unauthenticated'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -269,7 +293,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthSessionState.unauthenticated()';
 }
 

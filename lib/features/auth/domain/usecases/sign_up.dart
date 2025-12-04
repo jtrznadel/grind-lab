@@ -11,12 +11,21 @@ class SignUp implements UsecaseWithParams<Unit, SignUpParams> {
 
   @override
   Future<Either<Failure, Unit>> call(SignUpParams params) async =>
-      await _repository.signUp(email: params.email, password: params.password);
+      await _repository.signUp(
+        email: params.email,
+        password: params.password,
+        name: params.name,
+      );
 }
 
 class SignUpParams {
   final String email;
   final String password;
+  final String name;
 
-  SignUpParams({required this.email, required this.password});
+  SignUpParams({
+    required this.email,
+    required this.password,
+    required this.name,
+  });
 }

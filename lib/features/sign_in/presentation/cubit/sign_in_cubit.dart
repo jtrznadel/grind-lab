@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:grind_lab/core/services/video_preloader_service.dart';
 import 'package:grind_lab/features/auth/domain/usecases/sign_in.dart';
 import 'package:injectable/injectable.dart';
 
@@ -8,9 +9,11 @@ part 'sign_in_cubit.freezed.dart';
 
 @injectable
 class SignInCubit extends Cubit<SignInState> {
-  SignInCubit(this._signIn) : super(SignInState.initial());
+  SignInCubit(this._signIn, this._videoPreloaderService)
+    : super(SignInState.initial());
 
   final SignIn _signIn;
+  final VideoPreloaderService _videoPreloaderService;
 
   void updateEmail({required String email}) {
     emit(state.copyWith(email: email));
@@ -43,9 +46,10 @@ class SignInCubit extends Cubit<SignInState> {
           password: state.password,
         ),
       ),
-      (_) => emit(
-        SignInState.success(email: state.email, password: state.password),
-      ),
+      (_) {
+        _videoPreloaderService.dispose();
+        emit(SignInState.success(email: state.email, password: state.password));
+      },
     );
   }
 }

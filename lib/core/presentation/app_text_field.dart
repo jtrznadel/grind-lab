@@ -8,7 +8,7 @@ class AppTextField extends StatelessWidget {
     required this.hint,
     required this.onChanged,
     required this.keyboardType,
-    required this.obscureText,
+    this.obscureText = false,
   });
 
   final String hint;
