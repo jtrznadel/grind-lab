@@ -5,6 +5,7 @@ import 'package:grind_lab/core/presentation/app_bottom_navigation_bar.dart';
 import 'package:grind_lab/core/presentation/app_scaffold.dart';
 import 'package:grind_lab/features/home/presentation/home_screen.dart';
 import 'package:grind_lab/features/main/cubit/main_cubit.dart';
+import 'package:grind_lab/features/profile/presentation/view/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -77,7 +78,7 @@ class _BodyState extends State<_Body> {
                 case 2:
                   return Text('Measurments Screen');
                 case 3:
-                  return Text('Profile Screen');
+                  return ProfileScreen();
                 default:
                   return const SizedBox.shrink();
               }

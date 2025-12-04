@@ -105,6 +105,7 @@ class _Body extends StatelessWidget {
                 onPressed: () {
                   context.read<SignInCubit>().signIn();
                 },
+                width: double.infinity,
                 child: Text("Sign In"),
               ),
               SizedBox(height: 24),
@@ -122,7 +123,7 @@ class _Body extends StatelessWidget {
                 backgroundColor: AppColors.white,
                 borderColor: AppColors.borderColor,
                 shadowEnabled: false,
-
+                width: double.infinity,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -147,6 +148,7 @@ class _Body extends StatelessWidget {
                 backgroundColor: AppColors.white,
                 borderColor: AppColors.borderColor,
                 shadowEnabled: false,
+                width: double.infinity,
 
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -172,6 +174,7 @@ class _Body extends StatelessWidget {
                 backgroundColor: AppColors.white,
                 borderColor: AppColors.borderColor,
                 shadowEnabled: false,
+                width: double.infinity,
 
                 child: Row(
                   mainAxisSize: MainAxisSize.min,

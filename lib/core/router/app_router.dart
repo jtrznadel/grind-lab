@@ -3,6 +3,7 @@ import 'package:grind_lab/core/router/app_page_transitions.dart';
 import 'package:grind_lab/features/auth/presentation/view/sign_in_screen.dart';
 import 'package:grind_lab/features/auth/presentation/view/sign_up_screen.dart';
 import 'package:grind_lab/features/main/presentation/main_screen.dart';
+import 'package:grind_lab/features/profile/presentation/view/profile_screen.dart';
 import 'package:grind_lab/features/splash/presentation/splash_screen.dart';
 import 'package:grind_lab/features/welcome/presentation/view/welcome_screen.dart';
 import 'package:injectable/injectable.dart';
@@ -46,6 +47,12 @@ class AppRouter {
       ),
     ],
   );
+
+  List<String> get publicPaths => [
+    WelcomeScreen.path,
+    SignUpScreen.path,
+    SignInScreen.path,
+  ];
 
   GoRouter config() => _router;
 }
