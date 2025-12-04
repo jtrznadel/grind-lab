@@ -9,32 +9,32 @@ import 'package:grind_lab/core/presentation/app_back_button.dart';
 import 'package:grind_lab/core/presentation/app_elevated_button.dart';
 import 'package:grind_lab/core/presentation/app_scaffold.dart';
 import 'package:grind_lab/core/presentation/app_text_field.dart';
-import 'package:grind_lab/features/sign_in/presentation/cubit/sign_in_cubit.dart';
-import 'package:grind_lab/features/sign_up/presentation/view/sign_up_screen.dart';
-import 'package:grind_lab/features/sign_in/presentation/view/widgets/sign_in_other_options_section.dart';
+import 'package:grind_lab/features/sign_in/presentation/view/sign_in_screen.dart';
+import 'package:grind_lab/features/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:grind_lab/features/sign_up/presentation/view/widgets/sign_up_other_options_section.dart';
 import 'package:grind_lab/features/welcome/presentation/view/welcome_screen.dart';
 
-class SignInScreen extends StatelessWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
-  static const String name = 'sign_in';
-  static const String path = '/sign_in';
+  static const String name = 'sign_up';
+  static const String path = '/sign_up';
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => inject<SignInCubit>(),
-      child: const _SignInView(),
+      create: (context) => inject<SignUpCubit>(),
+      child: const _SignUpView(),
     );
   }
 }
 
-class _SignInView extends StatelessWidget {
-  const _SignInView();
+class _SignUpView extends StatelessWidget {
+  const _SignUpView();
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignInCubit, SignInState>(
+    return BlocListener<SignUpCubit, SignUpState>(
       listener: (context, state) {
         state.mapOrNull(
           error: (error) {
@@ -47,7 +47,7 @@ class _SignInView extends StatelessWidget {
           },
         );
       },
-      child: AppScaffold(body: const _Body()),
+      child: AppScaffold(body: _Body()),
     );
   }
 }
@@ -66,7 +66,7 @@ class _Body extends StatelessWidget {
         children: [
           AppBackButton(onTap: () => context.goNamed(WelcomeScreen.name)),
           SizedBox(height: 36),
-          Text('Welcome Back', style: context.textTheme.headlineMedium),
+          Text('Create Your Account', style: context.textTheme.headlineMedium),
           SizedBox(height: 32),
           _Form(),
           SizedBox(height: 24),
@@ -79,7 +79,7 @@ class _Body extends StatelessWidget {
             ),
           ),
           SizedBox(height: 24),
-          SignInOtherOptionsSection(),
+          SignUpOtherOptionsSection(),
           Spacer(),
           _Footer(),
         ],
@@ -98,40 +98,35 @@ class _Form extends StatelessWidget {
         AppTextField(
           hint: 'Enter your email',
           onChanged: (value) {
-            context.read<SignInCubit>().updateEmail(email: value);
+            context.read<SignUpCubit>().updateEmail(email: value);
           },
           keyboardType: TextInputType.emailAddress,
-          obscureText: false,
+        ),
+        SizedBox(height: 8),
+        AppTextField(
+          hint: 'Enter your name',
+          onChanged: (value) {
+            context.read<SignUpCubit>().updateName(name: value);
+          },
+          keyboardType: TextInputType.name,
         ),
         SizedBox(height: 8),
         AppTextField(
           hint: 'Enter your password',
           onChanged: (value) {
-            context.read<SignInCubit>().updatePassword(password: value);
+            context.read<SignUpCubit>().updatePassword(password: value);
           },
           keyboardType: TextInputType.visiblePassword,
           obscureText: true,
         ),
-        SizedBox(height: 12),
-        Align(
-          alignment: Alignment.centerRight,
-          child: InkWell(
-            onTap: () {},
-            child: Text(
-              'Forgot Password?',
-              style: context.textTheme.labelSmall?.copyWith(
-                color: AppColors.accentColor,
-              ),
-            ),
-          ),
-        ),
+
         SizedBox(height: 32),
         AppElevatedButton(
           onPressed: () {
-            context.read<SignInCubit>().signIn();
+            context.read<SignUpCubit>().signUp();
           },
           width: double.infinity,
-          child: Text("Sign In"),
+          child: Text("Sign Up"),
         ),
       ],
     );
@@ -146,17 +141,17 @@ class _Footer extends StatelessWidget {
     return Center(
       child: InkWell(
         onTap: () {
-          context.goNamed(SignUpScreen.name);
+          context.goNamed(SignInScreen.name);
         },
         child: RichText(
           text: TextSpan(
-            text: "Don't have an account? ",
+            text: "Do you have an account? ",
             style: context.textTheme.bodySmall?.copyWith(
               color: AppColors.textSecondary,
             ),
             children: [
               TextSpan(
-                text: 'Sign Up',
+                text: 'Sign In',
                 style: context.textTheme.labelSmall?.copyWith(
                   color: AppColors.accentColor,
                 ),

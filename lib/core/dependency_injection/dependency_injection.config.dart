@@ -32,6 +32,8 @@ import 'package:grind_lab/features/profile/presentation/cubit/profile_cubit.dart
     as _i566;
 import 'package:grind_lab/features/sign_in/presentation/cubit/sign_in_cubit.dart'
     as _i144;
+import 'package:grind_lab/features/sign_up/presentation/cubit/sign_up_cubit.dart'
+    as _i386;
 import 'package:grind_lab/features/splash/presentation/cubit/splash_cubit.dart'
     as _i773;
 import 'package:grind_lab/features/welcome/presentation/cubit/welcome_cubit.dart'
@@ -71,6 +73,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i582.SignIn>(() => _i582.SignIn(gh<_i301.AuthRepository>()));
     gh.factory<_i952.SignOut>(() => _i952.SignOut(gh<_i301.AuthRepository>()));
     gh.factory<_i23.SignUp>(() => _i23.SignUp(gh<_i301.AuthRepository>()));
+    gh.factory<_i386.SignUpCubit>(
+      () => _i386.SignUpCubit(
+        gh<_i23.SignUp>(),
+        gh<_i207.VideoPreloaderService>(),
+      ),
+    );
     gh.factory<_i144.SignInCubit>(
       () => _i144.SignInCubit(
         gh<_i582.SignIn>(),

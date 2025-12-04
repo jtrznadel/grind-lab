@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:grind_lab/core/router/app_page_transitions.dart';
 import 'package:grind_lab/features/sign_in/presentation/view/sign_in_screen.dart';
-import 'package:grind_lab/features/auth/presentation/view/sign_up_screen.dart';
+import 'package:grind_lab/features/sign_up/presentation/view/sign_up_screen.dart';
 import 'package:grind_lab/features/main/presentation/main_screen.dart';
 import 'package:grind_lab/features/splash/presentation/splash_screen.dart';
 import 'package:grind_lab/features/welcome/presentation/view/welcome_screen.dart';

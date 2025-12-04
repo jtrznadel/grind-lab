@@ -3,7 +3,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 abstract class AuthRemoteDataSource {
   Future<void> signIn({required String email, required String password});
-  Future<void> signUp({required String email, required String password});
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String name,
+  });
   Future<void> signOut();
   Stream<AuthState> get authStateStream;
 }
@@ -27,10 +31,15 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<void> signUp({required String email, required String password}) async {
+  Future<void> signUp({
+    required String email,
+    required String password,
+    required String name,
+  }) async {
     final response = await _supabase.auth.signUp(
       email: email,
       password: password,
+      data: {'name': name},
     );
     if (response.session == null) {
       throw AuthException('Sign up failed: No session returned');
